@@ -41,7 +41,6 @@ const clovaSkillHandler = clova.Client
           */
           break
         }
-
         // 「中吉」だと「なかよし」発生されてしまう
         const fortune = ['大吉', 'ちゅうきち', '小吉', '吉', '凶']
         const zodiacSigns = ['牡羊座', '牡牛座', '双子座', '蟹座', '獅子座', '乙女座', '天秤座', '蠍座', '射手座', '山羊座', '水瓶座', '魚座']
