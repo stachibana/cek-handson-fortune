@@ -20,7 +20,7 @@ const clovaSkillHandler = clova.Client
     const intent = responseHelper.getIntentName();
     let speech;
     switch (intent) {
-      // ユーザーのインプットが星座だと判別された場合。第2引数はreprompt(入力が行われなかった場合の聞き返し)をするか否か。省略可。
+      // ユーザーのインプットが星座だと判別された場合。
       case 'FortuneIntent':
         // 星座を取得
         const slots = responseHelper.getSlots()
@@ -32,6 +32,7 @@ const clovaSkillHandler = clova.Client
             value: `星座に誤りがあります。他の星座でお試し下さい。`
           }
           responseHelper.setSimpleSpeech(speech)
+          // 第2引数にtrueを設定するとreprompt(入力が行われなかった場合の聞き返し)の文を定義できる
           responseHelper.setSimpleSpeech(speech, true)
           // 下記でも可
           /*
