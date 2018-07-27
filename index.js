@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // 応答の最後に追加するテンプレート
-const TEMPLATE_INQUIRY = '星座を言うか、使い方もしくは終了、と呼びかけて下さい。';
+const TEMPLATE_INQUIRY = '星座を言うか、使い方、もしくは終了と呼びかけて下さい。';
 
 const clovaSkillHandler = clova.Client
   .configureSkill()
