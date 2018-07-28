@@ -21,7 +21,7 @@ const clovaSkillHandler = clova.Client
     let speech;
     switch (intent) {
       // ユーザーのインプットが星座だと判別された場合。
-      case 'FortuneIntent':
+      case 'FortuneIntent': {
         // 星座を取得
         const slots = responseHelper.getSlots()
         // Slotに登録されていない星座はnullになる
@@ -57,6 +57,7 @@ const clovaSkillHandler = clova.Client
         responseHelper.setSimpleSpeech(speech, true)
 
         break;
+      }
       // ビルトインインテント。ユーザーによるインプットが使い方のリクエストと判別された場合
       case 'Clova.GuideIntent':
         speech = {
