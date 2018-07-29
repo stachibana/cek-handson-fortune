@@ -8,6 +8,7 @@ const TEMPLATE_INQUIRY = '星座を言うか、使い方、もしくは終了と
 const clovaSkillHandler = clova.Client
   .configureSkill()
   // スキルの起動リクエスト
+  
   .onLaunchRequest(responseHelper => {
     responseHelper.setSimpleSpeech({
       lang: 'ja',
