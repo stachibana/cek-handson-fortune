@@ -8,7 +8,6 @@ const TEMPLATE_INQUIRY = '星座を言うか、使い方、もしくは終了と
 const clovaSkillHandler = clova.Client
   .configureSkill()
   // スキルの起動リクエスト
-  
   .onLaunchRequest(responseHelper => {
     responseHelper.setSimpleSpeech({
       lang: 'ja',
@@ -25,6 +24,16 @@ const clovaSkillHandler = clova.Client
       case 'FortuneIntent': {
         // 星座を取得
         const slots = responseHelper.getSlots()
+        // スロット名を間違って付けてしまった場合
+        if (!('zodiac_signs' in slots)) {
+          speech = {
+            lang: 'ja',
+            type: 'PlainText',
+            value: `想定しないスロット名です。カスタムスロットの名前が正しいかご確認ください。`
+          }
+          responseHelper.setSimpleSpeech(speech)
+          break
+        }
         // Slotに登録されていない星座はnullになる
         if(slots.zodiac_signs == null) {
           speech = {
@@ -81,6 +90,14 @@ const clovaSkillHandler = clova.Client
         }
         responseHelper.setSimpleSpeech(speech)
         break;
+      default:
+        speech = {
+          lang: 'ja',
+          type: 'PlainText',
+          value: `想定しないインテントです。カスタムインテントの名前が正しいかご確認ください。`
+        }
+        responseHelper.setSimpleSpeech(speech)
+        break;
     }
   })
   // スキルの終了リクエスト
@@ -94,10 +111,10 @@ const app = new express();
 const clovaMiddleware = clova.Middleware({
   applicationId: process.env.APPLICATION_ID
 });
-app.post('/clova', clovaMiddleware, clovaSkillHandler);
+//app.post('/clova', clovaMiddleware, clovaSkillHandler);
 
 // リクエストの検証を行わない
-//app.post('/clova', bodyParser.json(), clovaSkillHandler);
+app.post('/clova', bodyParser.json(), clovaSkillHandler);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
