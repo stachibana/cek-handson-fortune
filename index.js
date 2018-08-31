@@ -111,10 +111,10 @@ const app = new express();
 const clovaMiddleware = clova.Middleware({
   applicationId: process.env.APPLICATION_ID
 });
-//app.post('/clova', clovaMiddleware, clovaSkillHandler);
+app.post('/clova', clovaMiddleware, clovaSkillHandler);
 
 // リクエストの検証を行わない
-app.post('/clova', bodyParser.json(), clovaSkillHandler);
+//app.post('/clova', bodyParser.json(), clovaSkillHandler);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
