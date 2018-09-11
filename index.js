@@ -12,7 +12,7 @@ const clovaSkillHandler = clova.Client
     responseHelper.setSimpleSpeech({
       lang: 'ja',
       type: 'PlainText',
-      value: `「サンプル占い」が起動されました。${TEMPLATE_INQUIRY}`,
+      value: `占いへようこそ。${TEMPLATE_INQUIRY}`,
     });
   })
   // カスタムインテント or ビルトインインテント
